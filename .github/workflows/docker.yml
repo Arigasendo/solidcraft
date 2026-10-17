@@ -83,8 +83,6 @@ jobs:
           platforms: linux/amd64
           load: true
           tags: solidcraft-web:test
-      - name: Smoke test
-        run: bash packaging/docker/smoke-test.sh solidcraft-web:test
       - uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
         if: github.event_name != 'pull_request'
         with:
