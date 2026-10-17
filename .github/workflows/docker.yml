@@ -34,7 +34,7 @@ env:
 jobs:
   image:
     if: ${{ !github.event.repository.private }}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     timeout-minutes: 60
     permissions:
       contents: read
@@ -51,7 +51,7 @@ jobs:
       - name: Install trunk
         run: |
           mkdir -p "$HOME/.local/bin"
-          curl -fsSL "https://github.com/trunk-rs/trunk/releases/download/${TRUNK_VERSION}/trunk-x86_64-unknown-linux-gnu.tar.gz" | tar -xz -C "$HOME/.local/bin"
+          curl -fsSL "https://github.com/trunk-rs/trunk/releases/download/${TRUNK_VERSION}/trunk-$(uname -m)-unknown-linux-gnu.tar.gz" | tar -xz -C "$HOME/.local/bin"
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
       - name: Build the web app
         working-directory: apps/solidcraft-web
